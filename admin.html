@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EliteStay | Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 font-sans antialiased text-slate-900">
+
+    <div class="min-h-screen flex">
+        <!-- Sidebar -->
+        <aside class="w-72 bg-slate-900 text-slate-300 hidden lg:flex flex-col">
+            <div class="p-8 border-b border-slate-800">
+                <h1 class="text-white text-2xl font-black tracking-tighter italic">EliteStay <span class="text-indigo-400 font-normal">MIS</span></h1>
+            </div>
+            <nav class="flex-1 p-6 space-y-2">
+                <a href="#" class="flex items-center space-x-3 p-3 bg-indigo-600 text-white rounded-xl transition">
+                    <i class="fas fa-chart-pie w-5"></i> <span class="font-semibold">Executive Summary</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 p-3 hover:bg-slate-800 hover:text-white rounded-xl transition">
+                    <i class="fas fa-hotel w-5"></i> <span>Room Inventory</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 p-3 hover:bg-slate-800 hover:text-white rounded-xl transition">
+                    <i class="fas fa-wallet w-5"></i> <span>Accounting & Audit</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 p-3 hover:bg-slate-800 hover:text-white rounded-xl transition">
+                    <i class="fas fa-user-tie w-5"></i> <span>Staff Performance</span>
+                </a>
+            </nav>
+            <div class="p-6 bg-slate-950 border-t border-slate-800">
+                <p class="text-xs font-bold text-slate-500 uppercase mb-2">System Admin</p>
+                <p class="text-white font-medium">Nathaniel John Agang</p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-y-auto">
+            <!-- Top Header -->
+            <header class="bg-white border-b border-slate-200 px-8 py-4 flex justify-between items-center sticky top-0 z-10">
+                <h2 class="text-xl font-bold text-slate-800 tracking-tight">Manager Dashboard</h2>
+                <div class="flex items-center space-x-4">
+                    <span class="text-sm text-slate-500">Today: May 22, 2025</span>
+                    <div class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center font-bold">NA</div>
+                </div>
+            </header>
+
+            <div class="p-8 space-y-8">
+                <!-- Financial Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-3 bg-emerald-50 text-emerald-600 rounded-2xl"><i class="fas fa-naira-sign"></i></div>
+                            <span class="text-xs font-bold text-emerald-500 bg-emerald-50 px-2 py-1 rounded">+12%</span>
+                        </div>
+                        <p class="text-slate-500 text-xs font-bold uppercase tracking-widest">Total Revenue</p>
+                        <h3 class="text-3xl font-black mt-1">₦1.24M</h3>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-3 bg-indigo-50 text-indigo-600 rounded-2xl"><i class="fas fa-door-open"></i></div>
+                        </div>
+                        <p class="text-slate-500 text-xs font-bold uppercase tracking-widest">Occupancy</p>
+                        <h3 class="text-3xl font-black mt-1">84%</h3>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-3 bg-amber-50 text-amber-600 rounded-2xl"><i class="fas fa-bell"></i></div>
+                        </div>
+                        <p class="text-slate-500 text-xs font-bold uppercase tracking-widest">Pending Dues</p>
+                        <h3 class="text-3xl font-black mt-1 text-amber-600">₦42,500</h3>
+                    </div>
+                </div>
+
+                <!-- Recent Activity Table -->
+                <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
+                    <div class="p-6 border-b border-slate-50 flex justify-between items-center">
+                        <h4 class="font-bold text-lg italic">Verified Transactions</h4>
+                        <button class="text-indigo-600 text-sm font-bold">Export CSV</button>
+                    </div>
+                    <table class="w-full text-left border-collapse">
+                        <thead class="bg-slate-50 text-slate-400 text-[10px] font-bold uppercase">
+                            <tr>
+                                <th class="p-6">Transaction ID</th>
+                                <th class="p-6">Guest Name</th>
+                                <th class="p-4">Service</th>
+                                <th class="p-4 text-right">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-6 text-xs font-mono">#TXN-8821</td>
+                                <td class="p-6 font-bold">Abubakar Musa</td>
+                                <td class="p-4 text-sm text-slate-500">Suite 404 (3 Nights)</td>
+                                <td class="p-4 text-right font-black">₦120,000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+                  </html>
