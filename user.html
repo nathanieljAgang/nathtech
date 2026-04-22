@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EliteStay | Front Desk</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 font-sans antialiased text-slate-900">
+
+    <!-- Simple Nav -->
+    <nav class="bg-white px-8 py-4 border-b border-slate-200 flex justify-between items-center">
+        <div class="flex items-center space-x-4">
+            <span class="text-emerald-600 font-black italic text-xl">EliteStay</span>
+            <span class="h-6 w-[2px] bg-slate-200"></span>
+            <span class="text-sm font-bold text-slate-400 uppercase tracking-widest">Front Desk Desk</span>
+        </div>
+        <div class="flex items-center space-x-6">
+            <button class="text-slate-400 hover:text-slate-600"><i class="fas fa-bell"></i></button>
+            <div class="text-right">
+                <p class="text-xs font-bold">Shift: Morning</p>
+                <p class="text-[10px] text-slate-400">Staff: S. Agang</p>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto p-8">
+        
+        <!-- Search & Action -->
+        <div class="flex flex-col md:flex-row justify-between items-center mb-10 gap-4">
+            <div class="relative w-full md:w-96">
+                <i class="fas fa-search absolute left-4 top-4 text-slate-300"></i>
+                <input type="text" placeholder="Search Guest or Room..." class="w-full pl-12 pr-4 py-3 rounded-2xl border-none shadow-sm focus:ring-2 focus:ring-emerald-500 transition">
+            </div>
+            <button class="w-full md:w-auto bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-2xl font-bold shadow-lg shadow-emerald-100 transition flex items-center justify-center gap-2">
+                <i class="fas fa-plus"></i> New Check-In
+            </button>
+        </div>
+
+        <!-- Room Inventory Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+            
+            <!-- Available Room -->
+            <div class="bg-white p-6 rounded-3xl border-2 border-transparent hover:border-emerald-500 shadow-sm transition group cursor-pointer">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-2xl font-black text-slate-800">101</span>
+                    <span class="w-3 h-3 bg-emerald-500 rounded-full"></span>
+                </div>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Standard</p>
+                <p class="text-sm font-bold text-emerald-600 mb-4">Available</p>
+                <button class="w-full py-2 bg-slate-50 text-slate-400 text-xs font-bold rounded-xl group-hover:bg-emerald-600 group-hover:text-white transition">Book Room</button>
+            </div>
+
+            <!-- Occupied Room -->
+            <div class="bg-white p-6 rounded-3xl border-2 border-red-100 shadow-sm transition group cursor-pointer bg-red-50/20">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-2xl font-black text-slate-800">102</span>
+                    <span class="w-3 h-3 bg-red-500 rounded-full animate-pulse"></span>
+                </div>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Deluxe Suite</p>
+                <p class="text-sm font-bold text-red-600 mb-4 font-mono">₦24,500 due</p>
+                <button class="w-full py-2 bg-red-600 text-white text-xs font-bold rounded-xl transition">Check-Out</button>
+            </div>
+
+            <!-- Cleaning -->
+            <div class="bg-white p-6 rounded-3xl border-2 border-amber-100 shadow-sm opacity-60">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-2xl font-black text-slate-800">103</span>
+                    <i class="fas fa-broom text-amber-500"></i>
+                </div>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Standard</p>
+                <p class="text-sm font-bold text-amber-600 mb-4">Housekeeping</p>
+                <button class="w-full py-2 bg-slate-100 text-slate-400 text-xs font-bold rounded-xl">In Progress</button>
+            </div>
+
+        </div>
+
+        <!-- Service Tabs -->
+        <div class="mt-16 bg-white rounded-3xl p-8 shadow-sm border border-slate-100">
+            <h3 class="font-bold text-lg mb-6">Quick Guest Services</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="p-6 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center gap-4 cursor-pointer hover:bg-indigo-100 transition">
+                    <i class="fas fa-utensils text-2xl text-indigo-600"></i>
+                    <div>
+                        <p class="font-bold text-indigo-900">Food & Drink</p>
+                        <p class="text-xs text-indigo-500">Charge meal to room bill</p>
+                    </div>
+                </div>
+                <div class="p-6 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center gap-4 cursor-pointer hover:bg-emerald-100 transition">
+                    <i class="fas fa-shirt text-2xl text-emerald-600"></i>
+                    <div>
+                        <p class="font-bold text-emerald-900">Laundry Service</p>
+                        <p class="text-xs text-emerald-500">Log laundry request</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+  </html>
