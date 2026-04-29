@@ -3,105 +3,183 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EliteStay | Admin Dashboard</title>
+    <title>EliteStay Pro | Enterprise MIS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+    </style>
 </head>
-<body class="bg-slate-50 font-sans antialiased text-slate-900">
+<body class="bg-[#f8fafc] text-slate-900">
 
     <div class="min-h-screen flex">
-        <!-- Sidebar -->
-        <aside class="w-72 bg-slate-900 text-slate-300 hidden lg:flex flex-col">
-            <div class="p-8 border-b border-slate-800">
-                <h1 class="text-white text-2xl font-black tracking-tighter italic">EliteStay <span class="text-indigo-400 font-normal">MIS</span></h1>
+        <!-- Sidebar: Expanded with more modules -->
+        <aside class="w-72 bg-slate-900 text-slate-400 hidden lg:flex flex-col sticky top-0 h-screen">
+            <div class="p-8">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-indigo-500 rounded-xl flex items-center justify-center text-white">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h1 class="text-white text-xl font-bold tracking-tight">EliteStay <span class="text-indigo-400">Pro</span></h1>
+                </div>
             </div>
-            <nav class="flex-1 p-6 space-y-2">
-                <a href="#" class="flex items-center space-x-3 p-3 bg-indigo-600 text-white rounded-xl transition">
-                    <i class="fas fa-chart-pie w-5"></i> <span class="font-semibold">Executive Summary</span>
+            
+            <nav class="flex-1 px-4 space-y-1 overflow-y-auto custom-scrollbar">
+                <p class="px-4 text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">Main Menu</p>
+                <a href="#" class="flex items-center space-x-3 p-3 bg-indigo-600/10 text-indigo-400 rounded-xl border border-indigo-600/20">
+                    <i class="fas fa-th-large w-5"></i> <span class="font-semibold">Command Center</span>
                 </a>
-                <a href="#" class="flex items-center space-x-3 p-3 hover:bg-slate-800 hover:text-white rounded-xl transition">
-                    <i class="fas fa-hotel w-5"></i> <span>Room Inventory</span>
+                <a href="#" class="flex items-center space-x-3 p-3 hover:bg-slate-800 hover:text-slate-200 rounded-xl transition group">
+                    <i class="fas fa-bed w-5 group-hover:text-indigo-400"></i> <span>Reservations</span>
                 </a>
-                <a href="#" class="flex items-center space-x-3 p-3 hover:bg-slate-800 hover:text-white rounded-xl transition">
-                    <i class="fas fa-wallet w-5"></i> <span>Accounting & Audit</span>
+                <a href="#" class="flex items-center space-x-3 p-3 hover:bg-slate-800 hover:text-slate-200 rounded-xl transition group">
+                    <i class="fas fa-concierge-bell w-5 group-hover:text-indigo-400"></i> <span>Housekeeping</span>
                 </a>
-                <a href="#" class="flex items-center space-x-3 p-3 hover:bg-slate-800 hover:text-white rounded-xl transition">
-                    <i class="fas fa-user-tie w-5"></i> <span>Staff Performance</span>
+                
+                <p class="px-4 text-[10px] font-bold uppercase tracking-widest text-slate-500 mt-6 mb-2">Finance</p>
+                <a href="#" class="flex items-center space-x-3 p-3 hover:bg-slate-800 hover:text-slate-200 rounded-xl transition group">
+                    <i class="fas fa-file-invoice-dollar w-5 group-hover:text-indigo-400"></i> <span>Billing & Folio</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 p-3 hover:bg-slate-800 hover:text-slate-200 rounded-xl transition group">
+                    <i class="fas fa-chart-line w-5 group-hover:text-indigo-400"></i> <span>Yield Analytics</span>
                 </a>
             </nav>
-            <div class="p-6 bg-slate-950 border-t border-slate-800">
-                <p class="text-xs font-bold text-slate-500 uppercase mb-2">System Admin</p>
-                <p class="text-white font-medium">Nathaniel John Agang</p>
+
+            <div class="p-4 m-4 bg-slate-800/50 rounded-2xl">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-white font-bold border-2 border-slate-700">
+                        NA
+                    </div>
+                    <div>
+                        <p class="text-white text-sm font-bold">Nathaniel J.</p>
+                        <p class="text-xs text-slate-500 font-medium">General Manager</p>
+                    </div>
+                </div>
             </div>
         </aside>
 
         <!-- Main Content -->
-        <main class="flex-1 overflow-y-auto">
-            <!-- Top Header -->
-            <header class="bg-white border-b border-slate-200 px-8 py-4 flex justify-between items-center sticky top-0 z-10">
-                <h2 class="text-xl font-bold text-slate-800 tracking-tight">Manager Dashboard</h2>
-                <div class="flex items-center space-x-4">
-                    <span class="text-sm text-slate-500">Today: May 22, 2025</span>
-                    <div class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center font-bold">NA</div>
+        <main class="flex-1 overflow-x-hidden">
+            <!-- Global Header -->
+            <header class="bg-white/80 backdrop-blur-md border-b border-slate-200 px-8 py-4 flex justify-between items-center sticky top-0 z-50">
+                <div class="flex items-center bg-slate-100 px-4 py-2 rounded-full w-96">
+                    <i class="fas fa-search text-slate-400 mr-2 text-sm"></i>
+                    <input type="text" placeholder="Search guests, rooms, or TXN ID..." class="bg-transparent border-none focus:outline-none text-sm w-full">
+                </div>
+                <div class="flex items-center space-x-6">
+                    <button class="relative text-slate-400 hover:text-indigo-600 transition">
+                        <i class="fas fa-bell text-xl"></i>
+                        <span class="absolute -top-1 -right-1 bg-red-500 w-4 h-4 rounded-full text-[10px] text-white flex items-center justify-center border-2 border-white font-bold">4</span>
+                    </button>
+                    <div class="h-8 w-[1px] bg-slate-200"></div>
+                    <div class="text-right">
+                        <p class="text-xs font-bold text-slate-400">Lobby Time</p>
+                        <p class="text-sm font-black text-slate-800 uppercase tracking-tighter">14:45 PM</p>
+                    </div>
                 </div>
             </header>
 
             <div class="p-8 space-y-8">
-                <!-- Financial Cards -->
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="p-3 bg-emerald-50 text-emerald-600 rounded-2xl"><i class="fas fa-naira-sign"></i></div>
-                            <span class="text-xs font-bold text-emerald-500 bg-emerald-50 px-2 py-1 rounded">+12%</span>
+                
+                <!-- Quick Action Bar -->
+                <section class="flex flex-wrap gap-4">
+                    <button class="bg-indigo-600 text-white px-6 py-3 rounded-2xl font-bold text-sm shadow-lg shadow-indigo-200 hover:scale-105 transition flex items-center space-x-2">
+                        <i class="fas fa-plus"></i> <span>New Reservation</span>
+                    </button>
+                    <button class="bg-white text-slate-700 border border-slate-200 px-6 py-3 rounded-2xl font-bold text-sm hover:bg-slate-50 transition flex items-center space-x-2">
+                        <i class="fas fa-sign-out-alt"></i> <span>Express Check-out</span>
+                    </button>
+                    <button class="bg-white text-slate-700 border border-slate-200 px-6 py-3 rounded-2xl font-bold text-sm hover:bg-slate-50 transition flex items-center space-x-2">
+                        <i class="fas fa-tools"></i> <span>Report Issue</span>
+                    </button>
+                </section>
+
+                <!-- Analytics Row -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Revenue Graph Card (Simplified representation) -->
+                    <div class="lg:col-span-2 bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100">
+                        <div class="flex justify-between items-center mb-8">
+                            <div>
+                                <h3 class="text-xl font-black text-slate-800 tracking-tight">Revenue Insights</h3>
+                                <p class="text-slate-400 text-sm">Weekly financial performance</p>
+                            </div>
+                            <select class="bg-slate-50 border-none text-xs font-bold rounded-lg p-2 outline-none">
+                                <option>Last 7 Days</option>
+                                <option>Last 30 Days</option>
+                            </select>
                         </div>
-                        <p class="text-slate-500 text-xs font-bold uppercase tracking-widest">Total Revenue</p>
-                        <h3 class="text-3xl font-black mt-1">₦1.24M</h3>
+                        <div class="flex items-end space-x-4 h-48">
+                            <div class="flex-1 bg-indigo-50 rounded-t-xl hover:bg-indigo-500 transition-all cursor-pointer group relative" style="height: 60%;">
+                                <span class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">₦120k</span>
+                            </div>
+                            <div class="flex-1 bg-indigo-50 rounded-t-xl hover:bg-indigo-500 transition-all cursor-pointer group relative" style="height: 80%;"></div>
+                            <div class="flex-1 bg-indigo-50 rounded-t-xl hover:bg-indigo-500 transition-all cursor-pointer group relative" style="height: 45%;"></div>
+                            <div class="flex-1 bg-indigo-600 rounded-t-xl group relative" style="height: 95%;">
+                                <span class="absolute -top-8 left-1/2 -translate-x-1/2 bg-indigo-600 text-white text-[10px] px-2 py-1 rounded">₦285k</span>
+                            </div>
+                            <div class="flex-1 bg-indigo-50 rounded-t-xl hover:bg-indigo-500 transition-all cursor-pointer group relative" style="height: 70%;"></div>
+                            <div class="flex-1 bg-indigo-50 rounded-t-xl hover:bg-indigo-500 transition-all cursor-pointer group relative" style="height: 55%;"></div>
+                            <div class="flex-1 bg-indigo-50 rounded-t-xl hover:bg-indigo-500 transition-all cursor-pointer group relative" style="height: 85%;"></div>
+                        </div>
+                        <div class="flex justify-between mt-4 text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
+                            <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+                        </div>
                     </div>
 
-                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="p-3 bg-indigo-50 text-indigo-600 rounded-2xl"><i class="fas fa-door-open"></i></div>
+                    <!-- Room Status Matrix -->
+                    <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100">
+                        <h3 class="text-xl font-black text-slate-800 tracking-tight mb-6">Room Status</h3>
+                        <div class="grid grid-cols-4 gap-3">
+                            <!-- Room Units -->
+                            <div class="aspect-square rounded-xl bg-emerald-500 text-white flex flex-col items-center justify-center text-[10px] font-bold shadow-lg shadow-emerald-100">
+                                <span>101</span>
+                                <i class="fas fa-check-circle mt-1"></i>
+                            </div>
+                            <div class="aspect-square rounded-xl bg-indigo-600 text-white flex flex-col items-center justify-center text-[10px] font-bold shadow-lg shadow-indigo-100">
+                                <span>102</span>
+                                <i class="fas fa-user mt-1"></i>
+                            </div>
+                            <div class="aspect-square rounded-xl bg-amber-400 text-white flex flex-col items-center justify-center text-[10px] font-bold">
+                                <span>103</span>
+                                <i class="fas fa-broom mt-1"></i>
+                            </div>
+                            <div class="aspect-square rounded-xl bg-slate-100 text-slate-400 flex flex-col items-center justify-center text-[10px] font-bold border-2 border-dashed border-slate-200">
+                                <span>104</span>
+                                <i class="fas fa-wrench mt-1"></i>
+                            </div>
+                            <!-- Repeat for demo -->
+                            <div class="aspect-square rounded-xl bg-indigo-600 text-white flex flex-col items-center justify-center text-[10px] font-bold"><span>201</span></div>
+                            <div class="aspect-square rounded-xl bg-indigo-600 text-white flex flex-col items-center justify-center text-[10px] font-bold"><span>202</span></div>
+                            <div class="aspect-square rounded-xl bg-emerald-500 text-white flex flex-col items-center justify-center text-[10px] font-bold"><span>203</span></div>
+                            <div class="aspect-square rounded-xl bg-emerald-500 text-white flex flex-col items-center justify-center text-[10px] font-bold"><span>204</span></div>
+                            <div class="aspect-square rounded-xl bg-indigo-600 text-white flex flex-col items-center justify-center text-[10px] font-bold"><span>301</span></div>
+                            <div class="aspect-square rounded-xl bg-amber-400 text-white flex flex-col items-center justify-center text-[10px] font-bold"><span>302</span></div>
+                            <div class="aspect-square rounded-xl bg-emerald-500 text-white flex flex-col items-center justify-center text-[10px] font-bold"><span>303</span></div>
+                            <div class="aspect-square rounded-xl bg-emerald-500 text-white flex flex-col items-center justify-center text-[10px] font-bold"><span>304</span></div>
                         </div>
-                        <p class="text-slate-500 text-xs font-bold uppercase tracking-widest">Occupancy</p>
-                        <h3 class="text-3xl font-black mt-1">84%</h3>
-                    </div>
-
-                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="p-3 bg-amber-50 text-amber-600 rounded-2xl"><i class="fas fa-bell"></i></div>
+                        <div class="mt-6 space-y-2">
+                            <div class="flex items-center justify-between text-xs">
+                                <span class="flex items-center"><span class="w-2 h-2 bg-emerald-500 rounded-full mr-2"></span> Available</span>
+                                <span class="font-bold">45</span>
+                            </div>
+                            <div class="flex items-center justify-between text-xs">
+                                <span class="flex items-center"><span class="w-2 h-2 bg-indigo-600 rounded-full mr-2"></span> Occupied</span>
+                                <span class="font-bold">32</span>
+                            </div>
                         </div>
-                        <p class="text-slate-500 text-xs font-bold uppercase tracking-widest">Pending Dues</p>
-                        <h3 class="text-3xl font-black mt-1 text-amber-600">₦42,500</h3>
                     </div>
                 </div>
 
-                <!-- Recent Activity Table -->
-                <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
-                    <div class="p-6 border-b border-slate-50 flex justify-between items-center">
-                        <h4 class="font-bold text-lg italic">Verified Transactions</h4>
-                        <button class="text-indigo-600 text-sm font-bold">Export CSV</button>
-                    </div>
-                    <table class="w-full text-left border-collapse">
-                        <thead class="bg-slate-50 text-slate-400 text-[10px] font-bold uppercase">
-                            <tr>
-                                <th class="p-6">Transaction ID</th>
-                                <th class="p-6">Guest Name</th>
-                                <th class="p-4">Service</th>
-                                <th class="p-4 text-right">Amount</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-slate-100">
-                            <tr class="hover:bg-slate-50">
-                                <td class="p-6 text-xs font-mono">#TXN-8821</td>
-                                <td class="p-6 font-bold">Abubakar Musa</td>
-                                <td class="p-4 text-sm text-slate-500">Suite 404 (3 Nights)</td>
-                                <td class="p-4 text-right font-black">₦120,000</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </main>
-    </div>
-</body>
-                  </html>
+                <!-- Verified Transactions Table (Market-Ready Version) -->
+                <div class="bg-white rounded-[2.5rem] shadow-sm border border-slate-100 overflow-hidden">
+                    <div class="p-8 border-b border-slate-50 flex justify-between items-center bg-slate-50/50">
+                        <div>
+                            <h4 class="font-black text-xl text-slate-800">Operational Log</h4>
+                            <p class="text-slate-400 text-sm">Real-time update of guest financial activities</p>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="bg-white border border-slate-200 p-2 px-4 rounded-xl text-sm font-b
