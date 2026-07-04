@@ -1,1 +1,136 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TAGHAM Foundation - Student Enrollment Form</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f4f7fa; color: #333; margin: 0; padding: 20px; }
+        .form-container { max-width: 650px; background: #fff; margin: 0 auto; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .header-block { text-align: center; border-bottom: 2px solid #1B365D; padding-bottom: 15px; margin-bottom: 25px; }
+        .header-block h1 { color: #1B365D; margin: 0; font-size: 24px; text-transform: uppercase; }
+        .header-block p { font-style: italic; color: #555; margin: 5px 0 0 0; }
+        .section-title { font-size: 16px; font-weight: bold; color: #1B365D; background: #f0f4f8; padding: 6px 10px; border-left: 4px solid #1B365D; margin-top: 25px; margin-bottom: 15px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 14px; }
+        input[type="text"], input[type="email"], input[type="date"], select, textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-size: 14px; }
+        textarea { resize: vertical; height: 100px; }
+        .checkbox-group { display: flex; flex-direction: column; gap: 8px; margin-top: 5px; }
+        .checkbox-item { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+        .checkbox-item input { width: 16px; height: 16px; }
+        .btn-submit { width: 100%; background: #1B365D; color: #fff; padding: 12px; border: none; border-radius: 4px; font-size: 16px; font-weight: bold; cursor: pointer; transition: background 0.2s; margin-top: 20px; }
+        .btn-submit:hover { background: #132743; }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <div class="header-block">
+        <h1>Tagham Foundation Digital Technology Hub</h1>
+        <p>Nurturing Giftedness. Engineering Integrity. Empowering Africa.</p>
+    </div>
+
+    <form action="submit_handler.php" method="POST">
+        
+        <!-- SECTION 1 -->
+        <div class="section-title">Section 1: Personal Information</div>
+        <div class="form-group">
+            <label for="fullname">Full Name (Last Name, First Name)</label>
+            <input type="text" id="fullname" name="fullname" required placeholder="e.g. Bala Emmanuel">
+        </div>
+        <div class="form-group" style="display: flex; gap: 15px;">
+            <div style="flex: 1;">
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+            <div style="flex: 1;">
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="phone">WhatsApp Contact Number</label>
+            <input type="text" id="phone" name="phone" required placeholder="e.g. 09024245172">
+        </div>
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required placeholder="name@example.com">
+        </div>
+        <div class="form-group" style="display: flex; gap: 15px;">
+            <div style="flex: 1;">
+                <label for="lga">LGA of Origin (Southern Kaduna)</label>
+                <input type="text" id="lga" name="lga" required placeholder="e.g. Jema'a">
+            </div>
+            <div style="flex: 1;">
+                <label for="state">State of Origin</label>
+                <input type="text" id="state" name="state" value="Kaduna" required>
+            </div>
+        </div>
+
+        <!-- SECTION 2 -->
+        <div class="section-title">Section 2: Technical Focus Area</div>
+        <div class="form-group">
+            <label for="primary_track">Primary Technical Training Track Selection</label>
+            <select id="primary_track" name="primary_track" required>
+                <option value="">-- Choose Track --</option>
+                <option value="Software & Web Development">Software & Web Development</option>
+                <option value="AI & Data Science">AI & Data Science</option>
+                <option value="Cloud Computing">Cloud Computing</option>
+                <option value="Cybersecurity">Cybersecurity</option>
+                <option value="UI/UX Design">UI/UX Design</option>
+            </select>
+        </div>
+
+        <!-- SECTION 3 -->
+        <div class="section-title">Section 3: Four-Pillar Model Focus</div>
+        <div class="form-group">
+            <label>Select Entrepreneurship & Ecosystem Paths That Interest You:</label>
+            <div class="checkbox-group">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="p1" name="path_freelance" value="Yes">
+                    <label for="p1">Freelancing & Remote Work Infrastructure Setup</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="p2" name="path_business" value="Yes">
+                    <label for="p2">Business Planning & Ethical Wealth Creation Models</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="p3" name="path_startup" value="Yes">
+                    <label for="p3">Startup Incubator Pathway (Seed Funding Eligibility)</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 4 -->
+        <div class="section-title">Section 4: Infrastructure Capability</div>
+        <div class="form-group" style="display: flex; gap: 15px;">
+            <div style="flex: 1;">
+                <label for="laptop">Do you have regular access to a laptop?</label>
+                <select id="laptop" name="laptop" required>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            <div style="flex: 1;">
+                <label for="literacy">Basic Computer Literacy Skills?</label>
+                <select id="literacy" name="literacy" required>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="purpose">Statement of Purpose / Community Impact Goal</label>
+            <textarea id="purpose" name="purpose" placeholder="Briefly describe how you intend to utilize these digital skills to benefit your community..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">SUBMIT APPLICATION</button>
+    </form>
+</div>
+
+</body>
+</html>
