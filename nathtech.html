@@ -1,1 +1,408 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NATTECH - Full Stack Web Development</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Global Reset & Theme Variables */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        :root {
+            --bg-color: #0a0f1d;
+            --card-bg: #111827;
+            --text-main: #ffffff;
+            --text-muted: #9ca3af;
+            --accent-primary: #6366f1; /* Indigo */
+            --accent-secondary: #06b6d4; /* Cyan */
+            --success: #10b981;
+            --whatsapp-green: #25D366;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 80px;
+        }
+
+        /* Header / Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background-color: rgba(17, 24, 39, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #1f2937;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        header img {
+            height: 45px;
+            width: auto;
+            border-radius: 6px;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Nav Actions Wrapper */
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .login-link {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .login-link:hover {
+            color: var(--accent-secondary);
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        /* Secondary Button style for the login redirection */
+        .cta-btn-secondary {
+            background: #1f2937;
+            color: var(--text-main);
+            border: 1px solid #374151;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .cta-btn-secondary:hover {
+            background: #374151;
+            border-color: var(--accent-secondary);
+        }
+
+        /* WhatsApp Support Button in Payment Box */
+        .cta-btn-whatsapp {
+            background-color: transparent;
+            color: var(--whatsapp-green);
+            border: 1px solid var(--whatsapp-green);
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .cta-btn-whatsapp:hover {
+            background: var(--whatsapp-green);
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        /* Floating WhatsApp Button Styling */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--whatsapp-green);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            width: 60px;
+            height: 60px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp-float svg {
+            width: 32px;
+            height: 32px;
+            fill: white;
+        }
+
+        /* Hero / Main Introduction Section */
+        .hero {
+            text-align: center;
+            padding: 100px 20px 60px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(to right, var(--accent-secondary), #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        /* Container for sections */
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            background-color: var(--card-bg);
+            border: 1px solid #1f2937;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--accent-primary);
+            border-radius: 2px;
+        }
+
+        /* Instructor Section */
+        .instructor-grid {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .instructor-text p {
+            margin-bottom: 15px;
+            color: var(--text-muted);
+        }
+
+        .experience-badge {
+            display: inline-block;
+            background: rgba(6, 182, 212, 0.1);
+            color: var(--accent-secondary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Curriculum Section Grid */
+        .curriculum-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .course-card {
+            background-color: #1f2937;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-primary);
+            transition: transform 0.2s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .course-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            color: #ffffff;
+        }
+
+        .course-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Payment / Enrollment Section */
+        .payment-box {
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto;
+            background: #1f2937;
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px dashed var(--accent-secondary);
+        }
+
+        .payment-box p {
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--success);
+            margin-bottom: 20px;
+        }
+
+        .payment-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .instructor-grid { flex-direction: column; text-align: center; }
+            header { padding: 15px 5%; }
+            .payment-actions { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="logo.jpg" alt="NATTECH Logo">
+            <span class="logo-text">NATTECH</span>
+        </div>
+        <div class="nav-actions">
+            <a href="login.php" class="login-link">Sign In</a>
+            <a href="https://wa.me/2349041957900?text=Hello%20NATTECH%2C%20I%20have%20a%20question%20about%20the%20Full%20Stack%20course." target="_blank" class="login-link" style="color: var(--whatsapp-green);">Chat on WhatsApp</a>
+            <a href="#payment" class="cta-btn">Enroll Now</a>
+        </div>
+    </header>
+
+    <div class="hero">
+        <h1>Master <span>Full Stack</span> Web Development</h1>
+        <p>Learn to build industry-grade web applications from scratch. Acquire high-income technical skills through robust, practical mentoring.</p>
+    </div>
+
+    <main>
+        <section id="about-instructor">
+            <h2>Meet Your Instructor</h2>
+            <div class="instructor-grid">
+                <div class="instructor-text">
+                    <span class="experience-badge">Years of Practical Experience</span>
+                    <p style="margin-top: 15px;">Welcome to NATTECH Academy! I specialize in translating complex programming concepts into bite-sized, practical lessons that anyone can master.</p>
+                    <p>My mission is to equip you with the exact real-world engineering standards used by top tech firms globally. You won't just copy code; you will understand how things work under the hood.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="curriculum">
+            <h2>Our Full Stack Curriculum</h2>
+            <div class="curriculum-grid">
+                <div class="course-card">
+                    <h3>Frontend Basics</h3>
+                    <p>HTML5, CSS3, layout structures, grid, flexbox, and fully responsive design frameworks.</p>
+                </div>
+                <div class="course-card">
+                    <h3>JavaScript</h3>
+                    <p>Core logic, DOM manipulation, ES6 features, asynchronous operations, and modern APIs.</p>
+                </div>
+                <div class="course-card">
+                    <h3>React JS</h3>
+                    <p>Component architecture, state management, hooks, and routing for modern single-page applications.</p>
+                </div>
+                <div class="course-card">
+                    <h3>PHP & Backend</h3>
+                    <p>Server-side logic, session architecture, custom APIs, and secure relational database (MySQL) operations.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="payment">
+            <h2>Secure Your Access</h2>
+            <p style="color: var(--text-muted); margin-bottom: 25px;">Follow the streamlined process below to access the full learning management portal immediately upon admin verification.</p>
+            
+            <div class="payment-box">
+                <p>Investment Cost</p>
+                <div class="price">Affordable Quality</div>
+                <p>Register an account, copy our designated bank processing details from the secure dashboard form, make your deposit, and let us activate your workspace.</p>
+                
+                <div class="payment-actions">
+                    <a href="register.php" class="cta-btn">Proceed to Registration</a>
+                    <a href="https://wa.me/2349041957900?text=Hello%20NATTECH%2C%20I%20need%20help%20with%20my%20course%20payment%20and%20registration." target="_blank" class="cta-btn-whatsapp">
+                        <!-- Embedded WhatsApp Icon -->
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.948 0c3.174.001 6.161 1.24 8.401 3.487 2.24 2.246 3.475 5.236 3.47 8.414-.014 6.596-5.351 11.943-11.903 11.943-2.004-.002-3.974-.508-5.722-1.47l-6.137 1.626zM6.51 18.332l.395.235c1.558.925 3.342 1.414 5.17 1.415 5.517 0 10.012-4.471 10.024-9.942.006-2.651-1.022-5.143-2.896-7.018-1.874-1.874-4.368-2.907-7.027-2.908-5.53 0-10.026 4.473-10.037 9.944-.004 1.843.48 3.643 1.4 5.214l.258.441-.994 3.633 3.707-.974zm10.165-5.051c-.279-.14-1.653-.816-1.908-.909-.256-.094-.443-.14-.63.14-.186.279-.721.909-.884 1.095-.163.186-.326.21-.605.07-.279-.14-1.18-.435-2.247-1.387-.83-.741-1.39-1.655-1.553-1.935-.163-.28-.017-.431.122-.57.125-.124.279-.326.419-.49.14-.163.186-.279.279-.465.093-.186.046-.349-.023-.49-.07-.14-.63-1.517-.862-2.077-.226-.543-.454-.47-.63-.478-.163-.008-.349-.01-.535-.01-.186 0-.489.07-.745.349-.256.279-.978.955-.978 2.33 0 1.375 1.001 2.702 1.141 2.888.14.186 1.97 3.01 4.773 4.215.667.286 1.187.457 1.593.587.67.213 1.281.183 1.764.111.539-.08 1.653-.675 1.886-1.328.232-.653.232-1.213.163-1.328-.07-.115-.256-.186-.535-.326z"/></svg>
+                        Chat for Support
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Floating WhatsApp Action Button -->
+    <a href="https://wa.me/2349041957900?text=Hello%20NATTECH%2C%20I'm%20interested%20in%20enrolling%20in%20your%20Full%20Stack%20Development%20course." class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
+        <svg viewBox="0 0 24 24">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.948 0c3.174.001 6.161 1.24 8.401 3.487 2.24 2.246 3.475 5.236 3.47 8.414-.014 6.596-5.351 11.943-11.903 11.943-2.004-.002-3.974-.508-5.722-1.47l-6.137 1.626zM6.51 18.332l.395.235c1.558.925 3.342 1.414 5.17 1.415 5.517 0 10.012-4.471 10.024-9.942.006-2.651-1.022-5.143-2.896-7.018-1.874-1.874-4.368-2.907-7.027-2.908-5.53 0-10.026 4.473-10.037 9.944-.004 1.843.48 3.643 1.4 5.214l.258.441-.994 3.633 3.707-.974zm10.165-5.051c-.279-.14-1.653-.816-1.908-.909-.256-.094-.443-.14-.63.14-.186.279-.721.909-.884 1.095-.163.186-.326.21-.605.07-.279-.14-1.18-.435-2.247-1.387-.83-.741-1.39-1.655-1.553-1.935-.163-.28-.017-.431.122-.57.125-.124.279-.326.419-.49.14-.163.186-.279.279-.465.093-.186.046-.349-.023-.49-.07-.14-.63-1.517-.862-2.077-.226-.543-.454-.47-.63-.478-.163-.008-.349-.01-.535-.01-.186 0-.489.07-.745.349-.256.279-.978.955-.978 2.33 0 1.375 1.001 2.702 1.141 2.888.14.186 1.97 3.01 4.773 4.215.667.286 1.187.457 1.593.587.67.213 1.281.183 1.764.111.539-.08 1.653-.675 1.886-1.328.232-.653.232-1.213.163-1.328-.07-.115-.256-.186-.535-.326z"/>
+        </svg>
+    </a>
+
+</body>
+</html>
