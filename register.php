@@ -1,8 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TAGHAM Foundation - Student Enrollment Form</title>
     <style>
         body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f4f7fa; color: #333; margin: 0; padding: 20px; }
@@ -30,20 +30,19 @@
         <p>Nurturing Giftedness. Engineering Integrity. Empowering Africa.</p>
     </div>
 
-    <form action="submit_handler.php" method="POST">
+    <form id="enrollmentForm" action="WEBHOOK_URL_HERE" method="POST">
         
-        <!-- SECTION 1 -->
         <div class="section-title">Section 1: Personal Information</div>
         <div class="form-group">
             <label for="fullname">Full Name (Last Name, First Name)</label>
             <input type="text" id="fullname" name="fullname" required placeholder="e.g. Bala Emmanuel">
         </div>
-        <div class="form-group" style="display: flex; gap: 15px;">
-            <div style="flex: 1;">
+        <div class="form-group" style="display: block; width: 100%;">
+            <div style="margin-bottom: 15px;">
                 <label for="dob">Date of Birth</label>
                 <input type="date" id="dob" name="dob" required>
             </div>
-            <div style="flex: 1;">
+            <div>
                 <label for="gender">Gender</label>
                 <select id="gender" name="gender" required>
                     <option value="">Select Gender</option>
@@ -60,18 +59,17 @@
             <label for="email">Email Address</label>
             <input type="email" id="email" name="email" required placeholder="name@example.com">
         </div>
-        <div class="form-group" style="display: flex; gap: 15px;">
-            <div style="flex: 1;">
+        <div class="form-group">
+            <div style="margin-bottom: 15px;">
                 <label for="lga">LGA of Origin (Southern Kaduna)</label>
                 <input type="text" id="lga" name="lga" required placeholder="e.g. Jema'a">
             </div>
-            <div style="flex: 1;">
+            <div>
                 <label for="state">State of Origin</label>
                 <input type="text" id="state" name="state" value="Kaduna" required>
             </div>
         </div>
 
-        <!-- SECTION 2 -->
         <div class="section-title">Section 2: Technical Focus Area</div>
         <div class="form-group">
             <label for="primary_track">Primary Technical Training Track Selection</label>
@@ -85,7 +83,6 @@
             </select>
         </div>
 
-        <!-- SECTION 3 -->
         <div class="section-title">Section 3: Four-Pillar Model Focus</div>
         <div class="form-group">
             <label>Select Entrepreneurship & Ecosystem Paths That Interest You:</label>
@@ -100,6 +97,39 @@
                 </div>
                 <div class="checkbox-item">
                     <input type="checkbox" id="p3" name="path_startup" value="Yes">
+                    <label for="p3">Startup Incubator Pathway (Seed Funding Eligibility)</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title">Section 4: Infrastructure Capability</div>
+        <div class="form-group">
+            <div style="margin-bottom: 15px;">
+                <label for="laptop">Do you have regular access to a laptop?</label>
+                <select id="laptop" name="laptop" required>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            <div>
+                <label for="literacy">Basic Computer Literacy Skills?</label>
+                <select id="literacy" name="literacy" required>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="purpose">Statement of Purpose / Community Impact Goal</label>
+            <textarea id="purpose" name="purpose" placeholder="Briefly describe how you intend to utilize these digital skills to benefit your community..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">SUBMIT APPLICATION</button>
+    </form>
+</div>
+
+</body>
+</html>
                     <label for="p3">Startup Incubator Pathway (Seed Funding Eligibility)</label>
                 </div>
             </div>
