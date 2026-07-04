@@ -18,7 +18,7 @@
         .checkbox-group { display: flex; flex-direction: column; gap: 8px; margin-top: 5px; }
         .checkbox-item { display: flex; align-items: center; gap: 8px; font-size: 14px; }
         .checkbox-item input { width: 16px; height: 16px; }
-        .btn-submit { width: 100%; background: #1B365D; color: #fff; padding: 12px; border: none; border-radius: 4px; font-size: 16px; font-weight: bold; cursor: pointer; transition: background 0.2s; margin-top: 20px; }
+        .btn-submit { width: 100%; background: #1B365D; color: #fff; padding: 12px; border: none; border-radius: 4px; font-size: 16px; font-weight: bold; cursor: pointer; transition: background 0.2s; margin-top: 25px; }
         .btn-submit:hover { background: #132743; }
         @media (min-width: 480px) { .flex-group { display: flex; gap: 15px; } .flex-group > div { flex: 1; } }
     </style>
@@ -31,10 +31,9 @@
         <p>Nurturing Giftedness. Engineering Integrity. Empowering Africa.</p>
     </div>
 
-    <!-- Live Formspree Link Attached -->
     <form id="enrollmentForm" action="https://formspree.io/f/mbdvqank" method="POST">
         
-        <!-- SECTION 1 -->
+        <!-- SECTION 1: PERSONAL INFORMATION -->
         <div class="section-title">Section 1: Personal Information</div>
         <div class="form-group">
             <label for="fullname">Full Name (Last Name, First Name)</label>
@@ -76,7 +75,7 @@
             </div>
         </div>
 
-        <!-- SECTION 2 -->
+        <!-- SECTION 2: TECHNICAL FOCUS -->
         <div class="section-title">Section 2: Technical Focus Area</div>
         <div class="form-group">
             <label for="primary_track">Primary Technical Training Track Selection</label>
@@ -90,7 +89,7 @@
             </select>
         </div>
 
-        <!-- SECTION 3 -->
+        <!-- SECTION 3: FOUR-PILLAR MODEL -->
         <div class="section-title">Section 3: Four-Pillar Model Focus</div>
         <div class="form-group">
             <label>Select Entrepreneurship & Ecosystem Paths That Interest You:</label>
@@ -110,8 +109,8 @@
             </div>
         </div>
 
-        <!-- SECTION 4 -->
-        <div class="section-title">Section 4: Infrastructure Capability</div>
+        <!-- SECTION 4: INFRASTRUCTURE & STATEMENT -->
+        <div class="section-title">Section 4: Infrastructure Capability & Statement</div>
         <div class="flex-group">
             <div class="form-group">
                 <label for="laptop">Do you have regular access to a laptop?</label>
@@ -134,70 +133,7 @@
             <textarea id="purpose" name="purpose" placeholder="Briefly describe how you intend to utilize these digital skills to benefit your community..."></textarea>
         </div>
 
-        <button type="submit" class="btn-submit">SUBMIT APPLICATION</button>
-    </form>
-</div>
-
-</body>
-</html>
-        </div>
-
-        <div class="section-title">Section 4: Infrastructure Capability</div>
-        <div class="form-group">
-            <div style="margin-bottom: 15px;">
-                <label for="laptop">Do you have regular access to a laptop?</label>
-                <select id="laptop" name="laptop" required>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
-            </div>
-            <div>
-                <label for="literacy">Basic Computer Literacy Skills?</label>
-                <select id="literacy" name="literacy" required>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="purpose">Statement of Purpose / Community Impact Goal</label>
-            <textarea id="purpose" name="purpose" placeholder="Briefly describe how you intend to utilize these digital skills to benefit your community..."></textarea>
-        </div>
-
-        <button type="submit" class="btn-submit">SUBMIT APPLICATION</button>
-    </form>
-</div>
-
-</body>
-</html>
-                    <label for="p3">Startup Incubator Pathway (Seed Funding Eligibility)</label>
-                </div>
-            </div>
-        </div>
-
-        <!-- SECTION 4 -->
-        <div class="section-title">Section 4: Infrastructure Capability</div>
-        <div class="form-group" style="display: flex; gap: 15px;">
-            <div style="flex: 1;">
-                <label for="laptop">Do you have regular access to a laptop?</label>
-                <select id="laptop" name="laptop" required>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
-            </div>
-            <div style="flex: 1;">
-                <label for="literacy">Basic Computer Literacy Skills?</label>
-                <select id="literacy" name="literacy" required>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="purpose">Statement of Purpose / Community Impact Goal</label>
-            <textarea id="purpose" name="purpose" placeholder="Briefly describe how you intend to utilize these digital skills to benefit your community..."></textarea>
-        </div>
-
+        <!-- SINGLE SUBMIT BUTTON AT THE VERY END -->
         <button type="submit" class="btn-submit">SUBMIT APPLICATION</button>
     </form>
 </div>
