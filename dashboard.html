@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NATTECH - Student Workspace Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: #0a0f1d; color: #ffffff; height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+        
+        /* Navigation */
+        nav { display: flex; justify-content: space-between; align-items: center; background-color: #111827; padding: 0 2%; height: 60px; border-bottom: 1px solid #1f2937; }
+        .brand { font-size: 1.3rem; font-weight: 700; background: linear-gradient(to right, #6366f1, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .user-menu { display: flex; align-items: center; gap: 20px; }
+        .user-name { color: #9ca3af; font-size: 0.95rem; }
+        .logout-link { color: #ef4444; text-decoration: none; font-size: 0.9rem; font-weight: 600; cursor: pointer; }
+        
+        /* Login Screen Overlay */
+        .auth-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #0a0f1d; display: flex; justify-content: center; align-items: center; z-index: 999; }
+        .auth-card { background-color: #111827; border: 1px solid #1f2937; border-radius: 12px; width: 100%; max-width: 400px; padding: 40px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); }
+        .auth-card h2 { font-size: 1.5rem; margin-bottom: 20px; text-align: center; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; color: #e5e7eb; }
+        input[type="email"], input[type="password"], input[type="text"] { width: 100%; padding: 12px; background-color: #1f2937; border: 1px solid #374151; border-radius: 6px; color: #ffffff; font-size: 1rem; }
+        input:focus { outline: none; border-color: #6366f1; }
+        
+        /* Layout Framework */
+        .workspace-layout { display: flex; flex: 1; overflow: hidden; }
+        .curriculum-sidebar { width: 320px; background-color: #111827; border-right: 1px solid #1f2937; overflow-y: auto; padding: 20px; }
+        .curriculum-sidebar h3 { font-size: 1.1rem; color: #ffffff; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .module-group { margin-bottom: 25px; }
+        .module-title { font-weight: 600; font-size: 0.9rem; color: #06b6d4; margin-bottom: 10px; }
+        .lesson-item { display: flex; align-items: center; gap: 10px; background-color: #1f2937; padding: 12px; border-radius: 6px; margin-bottom: 8px; cursor: pointer; border: 1px solid transparent; font-size: 0.85rem; }
+        .lesson-item:hover:not(.is-locked) { background-color: #374151; border-color: #6366f1; }
+        .lesson-item.is-active { border-color: #06b6d4; background-color: #1e293b; }
+        .lesson-checkbox { width: 16px; height: 16px; accent-color: #10b981; pointer-events: none; }
+        .lesson-item.is-locked { opacity: 0.35; cursor: not-allowed; pointer-events: none; background-color: #0d1321; }
+
+        /* Workspace Viewports */
+        .content-workspace { flex: 1; display: flex; flex-direction: column; background-color: #0b1329; overflow-y: auto; padding: 30px; }
+        .lesson-header { margin-bottom: 25px; }
+        .lesson-header h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; }
+        .lesson-header p { color: #9ca3af; }
+        .interaction-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; flex: 1; min-height: 450px; }
+        .card-view { background-color: #111827; border: 1px solid #1f2937; border-radius: 10px; padding: 25px; display: flex; flex-direction: column; }
+        .card-view h2 { font-size: 1.2rem; margin-bottom: 15px; border-bottom: 1px solid #1f2937; padding-bottom: 10px; color: #e5e7eb; }
+        .code-snippet { font-family: 'Fira Code', monospace; background-color: #050811; color: #a78bfa; padding: 15px; border-radius: 6px; font-size: 0.9rem; line-height: 1.5; overflow-x: auto; flex: 1; border-left: 3px solid #6366f1; margin-bottom: 15px; white-space: pre-wrap; }
+        .run-btn { background-color: #10b981; color: white; font-weight: 700; border: none; padding: 12px; border-radius: 6px; cursor: pointer; text-align: center; width: 150px; }
+        .run-btn:hover { background-color: #059669; }
+        .quiz-option { display: block; background-color: #1f2937; border: 1px solid #374151; padding: 14px; border-radius: 6px; margin-bottom: 12px; cursor: pointer; font-size: 0.9rem; }
+        .quiz-option:hover { background-color: #2563eb; border-color: #3b82f6; }
+        .quiz-option input { margin-right: 10px; accent-color: #6366f1; }
+    </style>
+</head>
+<body>
+
+    <div id="auth-screen" class="auth-overlay">
+        <div class="auth-card">
+            <h2>Student Console Portal</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email Address</label>
+                    <input type="email" id="login-email" required placeholder="name@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="login-pass">Password</label>
+                    <input type="password" id="login-pass" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="run-btn" style="width:100%; background: linear-gradient(135deg, #6366f1, #06b6d4);">Verify Account Connection</button>
+            </form>
+        </div>
+    </div>
+
+    <nav>
+        <div class="brand">NATTECH Academy</div>
+        <div class="user-menu">
+            <span class="user-name">Student: <strong id="student-display-name">Loading...</strong></span>
+            <span class="logout-link" id="logout-btn">Log Out</span>
+        </div>
+    </nav>
+
+    <div class="workspace-layout">
+        <aside class="curriculum-sidebar" id="sidebar-container">
+            <h3>Course Progress Map</h3>
+        </aside>
+
+        <main class="content-workspace">
+            <div class="lesson-header">
+                <h1 id="lesson-title">Select a Lesson</h1>
+                <p id="lesson-desc">Please choose a topic from the curriculum map to start learning.</p>
+            </div>
+
+            <div class="interaction-grid">
+                <div class="card-view">
+                    <h2>Code Sandbox Lab Example</h2>
+                    <div class="code-snippet" id="code-display">// Code context asset</div>
+                    <button class="run-btn" id="run-code-btn">Run Snippet</button>
+                </div>
+
+                <div class="card-view">
+                    <form id="quiz-form">
+                        <h2>Knowledge Checkpoint Assessment</h2>
+                        <p id="quiz-question" style="margin-bottom: 20px; color: #9ca3af; font-size: 0.95rem;"></p>
+                        <div id="quiz-options-container"></div>
+                        <button type="submit" class="run-btn" style="background-color: #6366f1; width: 100%; margin-top: auto;">Submit Assessment</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // CONFIGURATION: Paste your Sheet.best or Stein API URL connection endpoint here
+        const EXCEL_API_ENDPOINT = "https://api.sheetbest.com/sheets/YOUR_UNIQUE_ID_HERE";
+
+        const curriculumData = [
+            {
+                moduleId: 101,
+                moduleTitle: "Module 1: Foundations",
+                topics: [
+                    {
+                        id: 1,
+                        title: "Lesson 1.1: Web Request Architecture",
+                        desc: "Understand high-speed server response codes and runtime HTTP network pipelines.",
+                        code: `async function checkStatus() {\n  const res = await fetch('https://api.example.com/status');\n  console.log(res.status);\n}`,
+                        expectedLog: "Console Simulation Log: Response Header Status: 200 OK",
+                        question: "Which HTTP status parameter response denotes a success?",
+                        options: { "200": "200 OK", "404": "404 Not Found" },
+                        correct: "200"
+                    }
+                ]
+            }
+        ];
+
+        class DatabaseSession {
+            // Live query directly inside your connected spreadsheet matrix
+            static async authenticateStudent(email, password) {
+                try {
+                    const response = await fetch(EXCEL_API_ENDPOINT);
+                    if (!response.ok) throw new Error("Spreadsheet endpoint communication failure");
+                    
+                    const rows = await response.json();
+                    
+                    // Match email and password parameters
+                    const student = rows.find(row => 
+                        row.email?.toLowerCase().trim() === email.toLowerCase().trim() && 
+                        row.password === password
+                    );
+
+                    if (!student) {
+                        alert("Invalid credential logs. Account verification failed.");
+                        return false;
+                    }
+
+                    // Check payment confirmation parameters
+                    if (student.payment_status?.toLowerCase().trim() !== "approved") {
+                        alert(`Access Denied: Your registration is currently: ${student.payment_status || 'Pending'}. Please wait for admin deployment confirmations.`);
+                        return false;
+                    }
+
+                    // Store safe session values inside localStorage cache state boundaries
+                    localStorage.setItem('session_active', 'true');
+                    localStorage.setItem('student_name', student.fullname);
+                    return true;
+                } catch (err) {
+                    console.error(err);
+                    alert("Error reaching verification server databases.");
+                    return false;
+                }
+            }
+        }
+
+        // CONTROL RUNTIME HANDLERS
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const pass = document.getElementById('login-pass').value;
+
+            const isVerified = await DatabaseSession.authenticateStudent(email, pass);
+            if (isVerified) {
+                document.getElementById('auth-screen').style.display = 'none';
+                initDashboard();
+            }
+        });
+
+        function initDashboard() {
+            document.getElementById('student-display-name').innerText = localStorage.getItem('student_name') || "Student Workspace";
+            renderUI();
+            loadLessonContext(1);
+        }
+
+        // RENDER CORE VIEWPORTS
+        function renderUI() {
+            const sidebar = document.getElementById('sidebar-container');
+            sidebar.innerHTML = '<h3>Course Progress Map</h3>';
+            
+            curriculumData.forEach(mod => {
+                const group = document.createElement('div');
+                group.className = 'module-group';
+                group.innerHTML = `<div class="module-title">${mod.moduleTitle}</div>`;
+
+                mod.topics.forEach(topic => {
+                    const item = document.createElement('div');
+                    item.className = 'lesson-item';
+                    item.innerHTML = `<input type="checkbox" class="lesson-checkbox"> <span>${topic.title}</span>`;
+                    item.addEventListener('click', () => loadLessonContext(topic.id));
+                    group.appendChild(item);
+                });
+                sidebar.appendChild(group);
+            });
+        }
+
+        function loadLessonContext(id) {
+            const topic = curriculumData.flatMap(m => m.topics).find(t => t.id === id);
+            if (!topic) return;
+
+            document.getElementById('lesson-title').innerText = topic.title;
+            document.getElementById('lesson-desc').innerText = topic.desc;
+            document.getElementById('code-display').innerText = topic.code;
+            document.getElementById('quiz-question').innerText = topic.question;
+            document.getElementById('run-code-btn').onclick = () => alert(topic.expectedLog);
+
+            const container = document.getElementById('quiz-options-container');
+            container.innerHTML = '';
+            Object.entries(topic.options).forEach(([val, txt]) => {
+                container.innerHTML += `<label class="quiz-option"><input type="radio" name="quiz_opt" value="${val}" required> ${txt}</label>`;
+            });
+
+            document.getElementById('quiz-form').onsubmit = (e) => {
+                e.preventDefault();
+                if (document.querySelector('input[name="quiz_opt"]:checked').value === topic.correct) {
+                    alert("Assessment Verified Correctly!");
+                } else {
+                    alert("Incorrect assessment metrics.");
+                }
+            };
+        }
+
+        document.getElementById('logout-btn').addEventListener('click', () => {
+            localStorage.clear();
+            window.location.reload();
+        });
+
+        // Retain session focus states on document context loading mutations
+        if (localStorage.getItem('session_active') === 'true') {
+            document.getElementById('auth-screen').style.display = 'none';
+            initDashboard();
+        }
+    </script>
+</body>
+</html>
