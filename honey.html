@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Interaction Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; text-align: center; }
+        button { padding: 12px 20px; font-size: 16px; margin: 10px; cursor: pointer; }
+        pre { text-align: left; background: #f4f4f4; padding: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+    <h2>Security Lab: Device APIs</h2>
+    <p>Test secure browser-mediated access to device features.</p>
+
+    <!-- Contact Picker Button -->
+    <button id="contactBtn">Select Contacts</button>
+    <br>
+
+    <!-- File Input -->
+    <input type="file" id="fileInput">
+    
+    <h3>Output Log:</h3>
+    <pre id="output">Waiting for user action...</pre>
+
+    <script>
+        const output = document.getElementById('output');
+
+        // 1. Contact Picker API Test
+        const contactBtn = document.getElementById('contactBtn');
+        
+        // Check if the API is supported by the browser
+        if ('contacts' in navigator && window.PublicKeyCredential) {
+            contactBtn.style.display = 'inline-block';
+        } else {
+            output.textContent += "\nContact Picker API not supported on this browser/device.";
+        }
+
+        contactBtn.addEventListener('click', async () => {
+            const props = ['name', 'email', 'tel'];
+            const opts = { multiple: true };
+            
+            try {
+                // This triggers the native browser contact chooser prompt
+                const contacts = await navigator.contacts.select(props, opts);
+                output.textContent = "Selected Contacts:\n" + JSON.stringify(contacts, null, 2);
+            } catch (ex) {
+                output.textContent = "Error or user cancelled: " + ex.message;
+            }
+        });
+
+        // 2. File Input Test
+        const fileInput = document.getElementById('fileInput');
+        fileInput.addEventListener('change', (event) => {
+            const files = event.target.files;
+            if (files.length > 0) {
+                output.textContent = `Selected File: ${files[0].name} (${files[0].size} bytes)`;
+            }
+        });
+    </script>
+
+</body>
+</html>
+
