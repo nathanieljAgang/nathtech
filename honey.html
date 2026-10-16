@@ -3,64 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Device Interaction Test</title>
+    <title>Public Opinion Survey</title>
     <style>
-        body { font-family: Arial, sans-serif; padding: 20px; text-align: center; }
-        button { padding: 12px 20px; font-size: 16px; margin: 10px; cursor: pointer; }
-        pre { text-align: left; background: #f4f4f4; padding: 10px; border-radius: 5px; }
+        body { font-family: Arial, sans-serif; margin: 20px; max-width: 600px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="text"], select { width: 100%; padding: 8px; box-sizing: border-box; }
+        button { padding: 10px 15px; background-color: #007bff; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
     </style>
 </head>
 <body>
 
-    <h2>Security Lab: Device APIs</h2>
-    <p>Test secure browser-mediated access to device features.</p>
+    <h2>2027 Public Opinion Survey</h2>
+    <form id="surveyForm">
+        <div class="form-group">
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" required>
+        </div>
 
-    <!-- Contact Picker Button -->
-    <button id="contactBtn">Select Contacts</button>
-    <br>
+        <div class="form-group">
+            <label for="state">State of Residence:</label>
+            <input type="text" id="state" name="state" required>
+        </div>
 
-    <!-- File Input -->
-    <input type="file" id="fileInput">
-    
-    <h3>Output Log:</h3>
-    <pre id="output">Waiting for user action...</pre>
+        <div class="form-group">
+            <label for="priority">Primary Issue Concern:</label>
+            <select id="priority" name="priority" required>
+                <option value="">Select an option</option>
+                <option value="economy">Economy</option>
+                <option value="security">Security</option>
+                <option value="education">Education</option>
+                <option value="infrastructure">Infrastructure</option>
+            </select>
+        </div>
+
+        <button type="submit">Submit Survey</button>
+    </form>
+
+    <div id="confirmation" style="margin-top: 20px; color: green;"></div>
 
     <script>
-        const output = document.getElementById('output');
-
-        // 1. Contact Picker API Test
-        const contactBtn = document.getElementById('contactBtn');
-        
-        // Check if the API is supported by the browser
-        if ('contacts' in navigator && window.PublicKeyCredential) {
-            contactBtn.style.display = 'inline-block';
-        } else {
-            output.textContent += "\nContact Picker API not supported on this browser/device.";
-        }
-
-        contactBtn.addEventListener('click', async () => {
-            const props = ['name', 'email', 'tel'];
-            const opts = { multiple: true };
+        document.getElementById('surveyForm').addEventListener('submit', function(event) {
+            event.preventDefault();
             
-            try {
-                // This triggers the native browser contact chooser prompt
-                const contacts = await navigator.contacts.select(props, opts);
-                output.textContent = "Selected Contacts:\n" + JSON.stringify(contacts, null, 2);
-            } catch (ex) {
-                output.textContent = "Error or user cancelled: " + ex.message;
-            }
-        });
+            // Gather submitted data
+            const formData = {
+                fullName: document.getElementById('fullName').value,
+                state: document.getElementById('state').value,
+                priority: document.getElementById('priority').value,
+                timestamp: new Date().toISOString()
+            };
 
-        // 2. File Input Test
-        const fileInput = document.getElementById('fileInput');
-        fileInput.addEventListener('change', (event) => {
-            const files = event.target.files;
-            if (files.length > 0) {
-                output.textContent = `Selected File: ${files[0].name} (${files[0].size} bytes)`;
-            }
+            // Process data (e.g., log to console or display confirmation)
+            console.log('Survey Submitted:', formData);
+            document.getElementById('confirmation').textContent = 'Thank you for participating in the survey.';
+            this.reset();
         });
     </script>
 
 </body>
 </html>
-
